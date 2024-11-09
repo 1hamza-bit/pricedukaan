@@ -90,7 +90,7 @@ export default function ProductDetail() {
                             <p className="text-gray-600 mb-4">
                                 PlayStation 5 Controller Skin High quality vinyl with air channel adhesive for easy bubble-free install & mess-free removal. Pressure sensitive.
                             </p>
-                            <button className="bg-green-500 text-white font-semibold py-2 px-4 flex gap-2 rounded-lg mb-4 hover:bg-green-600 transition">
+                            <button className="bg-[#059669] text-white font-semibold py-2 px-4 flex gap-2 rounded-lg mb-4 hover:bg-green-600 transition">
                                 <MessageSquare /> Inquire Now
                             </button>
 
