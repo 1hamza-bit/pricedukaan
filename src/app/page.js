@@ -12,9 +12,8 @@ export default function Home() {
     <div >
  
      <Layout>
-      {/* <ComparisonHub />
-      <ProductSection /> */}
-      <ProductDetail />
+       <ComparisonHub/>
+       <ProductSection/>
      </Layout>
     
     </div>
