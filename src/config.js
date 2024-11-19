@@ -1,2 +1,2 @@
 // config.js
-export const API_BASE_URL = "http://localhost:5000"; // Replace with your actual base URL
+export const API_BASE_URL = "https://api.pricedukan.com"; // Replace with your actual base URL
