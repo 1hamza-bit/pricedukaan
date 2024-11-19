@@ -10,7 +10,7 @@ export default function ComparisonHub() {
                     <div className="grid grid-cols-1 md:grid-cols-2 w-[94%] gap-4">
 
 
-                        <div className="max-w-3xl flex flex-col justify-center px-8 font-poppins ">
+                        <div className="max-w-3xl flex flex-col justify-center px-8">
                             <h1 className="text-5xl font-bold">
                                 Price <span className="text-[#059669]">Comparison Hub</span> <Tag className="inline-block text-[#059669]" size={32} />
                             </h1>

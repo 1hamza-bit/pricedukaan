@@ -1,13 +1,19 @@
-import Footer from "./footer";
-import Header from "./header";
+import { Poppins } from 'next/font/google';
+import Footer from './footer';
+import Header from './header';
+
+// Load the Poppins font
+const poppins = Poppins({
+    subsets: ['latin'], // Specify the character subsets
+    weight: ['400', '600', '700'], // Specify the weights you need
+});
 
 export default function Layout({ children }) {
     return (
-        <>
-<Header />
-        <main>{children}</main>
-        <Footer />
-        </>
-
-    )
+        <div className={poppins.className}>
+            <Header />
+            <main>{children}</main>
+            <Footer />
+        </div>
+    );
 }

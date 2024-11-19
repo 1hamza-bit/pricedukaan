@@ -1,76 +1,18 @@
 // components/ProductDetail.js
 
-import { FileText, MessageSquare, Notebook, Reply, Tag } from "lucide-react";
-import Image from "next/image";
+import { FileText, MessageSquare, Notebook } from "lucide-react";
 
-export default function ProductDetail() {
-
-    const products = [
-        {
-            image: '/industrial1.png',
-            name: 'Fluke 922 Kit / Airflow Meter Micromanometer',
-            price: '135,000 PKR',
-            brand: 'FLUKE',
-        },
-        {
-            image: '/images/fluke-922-airflow.png',
-            name: 'Fluke 922 Kit / Airflow Meter Micromanometer',
-            price: '85,000 PKR',
-            brand: 'UNI-T',
-        },
-        {
-            image: '/images/fluke-810.png',
-            name: 'Fluke 810 Vibration Tester Product',
-            price: '246,000 PKR',
-            brand: 'MASTECH',
-        },
-        {
-            image: '/images/lutron-emf.png',
-            name: 'Lutron EMF-822A EMF Tester Pocket',
-            price: '35,000 PKR',
-            brand: 'Lutron',
-        },
-        {
-            image: '/images/benetech-gm2200.png',
-            name: 'Benetech GM-2200 Infrared Thermometer',
-            price: '335,000 PKR',
-            brand: 'KYORITSU',
-        },
-        {
-            image: '/images/benetech-gm-thermometer.png',
-            name: 'Benetech GM-Thermometer',
-            price: '185,000 PKR',
-            brand: 'MASTECH',
-        },
-        {
-            image: '/images/fluke-83v.png',
-            name: 'Fluke 83V Average Responding Industrial Multimeter',
-            price: '90,000 PKR',
-            brand: 'FLUKE',
-        },
-        {
-            image: '/images/kyoritsu-8031f.png',
-            name: 'KYORITSU KEW 8031F Phase Indicator',
-            price: '15,000 PKR',
-            brand: 'KYORITSU',
-        },
-        {
-            image: '/images/mastech-ms8900.png',
-            name: 'Mastech MS8900 Wood Timber Moisture Temperature Detector',
-            price: '78,000 PKR',
-            brand: 'Lutron',
-        },
-    ];
+export default function ProductDetail({product}) {
 
     return (
         <>
             <section className="py-10 bg-[#fef7f4]  ">
                 <div className="container mx-auto px-4">
                     {/* Breadcrumb */}
-                    <nav className="text-sm text-gray-600 mb-4">
+                    <nav className="text-sm text-[#202c33]/70 mb-4">
                         <a href="#" className="mx-2 hover:underline">Account</a> /
                         <a href="#" className="mx-2 hover:underline">Gaming</a> /
-                        <span className="ml-2 text-black bold"> Havit HV G-92 Gamepad</span>
+                        <span className="ml-2 text-[#202c33] bold">{product.Name}</span>
                     </nav>
 
                     {/* Product Section */}
@@ -78,42 +20,38 @@ export default function ProductDetail() {
                         {/* Product Image */}
                         <div className="lg:w-1/2 bg-white flex justify-center items-center">
                             <img
-                                src="/images/gamepad.png" // Replace with the actual image path
+                                src={product["Main Image"]} // Replace with the actual image path
                                 alt="Logitech F710 Wireless Gamepad"
-                                className="w-full h-auto object-contain rounded-lg shadow-md"
+                                className="w-full h-auto object-contain rounded-md px-12 py-4"
                             />
                         </div>
 
                         {/* Product Info */}
                         <div className="lg:w-1/2">
-                            <h1 className="text-2xl font-bold mb-2">Logitech F710 Wireless Gamepad (940-000119)</h1>
-                            <p className="text-gray-600 mb-4">
-                                PlayStation 5 Controller Skin High quality vinyl with air channel adhesive for easy bubble-free install & mess-free removal. Pressure sensitive.
+                            <h1 className="text-3xl font-semibold">{product.Name}</h1>
+                            <p className="text-[#202c33] mt-3">
+                                {product.Description}
                             </p>
-                            <button className="bg-[#059669] text-white font-semibold py-2 px-4 flex gap-2 rounded-lg mb-4 hover:bg-green-600 transition">
-                                <MessageSquare /> Inquire Now
+                            <button className="bg-[#059669] mt-5 text-white font-medium py-2.5 px-6 flex gap-2 rounded mb-6 hover:bg-green-600 transition">
+                                <MessageSquare size={22} /> Inquire Now
                             </button>
 
                             {/* Product Details Table */}
-                            <div className="border rounded-lg shadow-sm p-4 bg-none">
-                                <div className="flex items-center gap-2 py-2">
-
-                                    <span className="text-gray-700 font-semibold">Product Views:</span>
-                                    <span className="text-gray-700">8825</span>
+                            <div className="border border-[#4F4F4F80]/50 rounded bg-none">
+                                <div className="flex items-center gap-2 py-4 px-3">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M12 21C13.1819 21 14.3522 20.7672 15.4442 20.3149C16.5361 19.8626 17.5282 19.1997 18.364 18.364C19.1997 17.5282 19.8626 16.5361 20.3149 15.4442C20.7672 14.3522 21 13.1819 21 12C21 10.8181 20.7672 9.64778 20.3149 8.55585C19.8626 7.46392 19.1997 6.47177 18.364 5.63604C17.5282 4.80031 16.5361 4.13738 15.4442 3.68508C14.3522 3.23279 13.1819 3 12 3C9.61305 3 7.32387 3.94821 5.63604 5.63604C3.94821 7.32387 3 9.61305 3 12C3 14.3869 3.94821 16.6761 5.63604 18.364C7.32387 20.0518 9.61305 21 12 21ZM11.768 15.64L16.768 9.64L15.232 8.36L10.932 13.519L8.707 11.293L7.293 12.707L10.293 15.707L11.067 16.481L11.768 15.64Z" fill="black"/>
+                                    </svg>
+                                    <span className="text-gray-700 font-semibold">Warranty:</span>
+                                    <span className="text-gray-700">{product.Warranty}</span>
                                 </div>
-                                <div className="flex items-center gap-2 py-2 border-t">
-                                    <span className="text-gray-700 font-semibold">Stock Availability:</span>
-                                    <span className="text-green-600">Available</span>
-                                </div>
-                                <div className="flex items-center gap-2 py-2 border-t">
-                                    <span className="text-gray-700 font-semibold">Model:</span>
-                                    <span className="text-gray-700">LOGI-58</span>
-                                </div>
-                                <div className="flex items-center gap-2 py-2 border-t">
-                                    <span className="text-gray-700 font-semibold">Brand:</span>
+                                <div className="flex items-center gap-2 py-4 px-3 border-t border-[#4F4F4F80]/50">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M12 21C13.1819 21 14.3522 20.7672 15.4442 20.3149C16.5361 19.8626 17.5282 19.1997 18.364 18.364C19.1997 17.5282 19.8626 16.5361 20.3149 15.4442C20.7672 14.3522 21 13.1819 21 12C21 10.8181 20.7672 9.64778 20.3149 8.55585C19.8626 7.46392 19.1997 6.47177 18.364 5.63604C17.5282 4.80031 16.5361 4.13738 15.4442 3.68508C14.3522 3.23279 13.1819 3 12 3C9.61305 3 7.32387 3.94821 5.63604 5.63604C3.94821 7.32387 3 9.61305 3 12C3 14.3869 3.94821 16.6761 5.63604 18.364C7.32387 20.0518 9.61305 21 12 21ZM11.768 15.64L16.768 9.64L15.232 8.36L10.932 13.519L8.707 11.293L7.293 12.707L10.293 15.707L11.067 16.481L11.768 15.64Z" fill="black"/>
+                                    </svg>
+                                    <span className="text-gray-700 font-semibold">Product Type:</span>
                                     <span className="flex items-center gap-2">
-                                        <span className="text-gray-700">Logitech</span>
-                                        <img src="/images/logitech-logo.png" alt="Logitech" className="h-10" />
+                                        <span className="text-gray-700">{product["Product"]}</span>
                                     </span>
                                 </div>
                             </div>
@@ -125,22 +63,34 @@ export default function ProductDetail() {
             </section>
 
             {/* Description Section */}
-            <section className="bg-white border-t-2 border-b-2 border-dotted border-gray-600 py-4">
-                <div className="container mx-auto px-4">
+            <section className="bg-white border-t border-dotted border-black py-6">
+                <div className="layout-wrapper">
 
-                    <div className="mt-2">
-                        <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-                            <Notebook />
+                    <div>
+                        <h2 className="text-[#202c33] text-3xl font-semibold mb-4 flex items-center gap-3">
+                        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M13.75 9.375H32.5V10.625H13.75V9.375Z" fill="black"/>
+<path d="M13.75 11.875H35V13.125H13.75V11.875Z" fill="black"/>
+<path d="M11.25 8.125H5V14.375H11.25V8.125ZM10 13.125H6.25V9.375H10V13.125Z" fill="black"/>
+<path d="M13.75 18.125H32.5V19.375H13.75V18.125Z" fill="black"/>
+<path d="M13.75 20.625H35V21.875H13.75V20.625Z" fill="black"/>
+<path d="M11.25 16.875H5V23.125H11.25V16.875ZM10 21.875H6.25V18.125H10V21.875Z" fill="black"/>
+<path d="M13.75 26.875H32.5V28.125H13.75V26.875Z" fill="black"/>
+<path d="M13.75 29.375H35V30.625H13.75V29.375Z" fill="black"/>
+<path d="M11.25 25.625H5V31.875H11.25V25.625ZM10 30.625H6.25V26.875H10V30.625Z" fill="black"/>
+<path d="M4.27375 36.25H35.725C38.0863 36.25 40 34.3362 40 31.9762V8.02375C40 5.66375 38.0863 3.75 35.7262 3.75H4.27375C1.91375 3.75 0 5.66375 0 8.02375V31.975C0 34.3363 1.91375 36.25 4.27375 36.25ZM1.25 8.02375C1.25 6.35625 2.60625 5 4.27375 5H35.725C37.3937 5 38.75 6.35625 38.75 8.02375V31.975C38.75 33.6437 37.3937 35 35.7262 35H4.27375C2.60625 35 1.25 33.6437 1.25 31.9762V8.02375Z" fill="black"/>
+</svg>
+
                             Description
                         </h2>
-                        <p className="text-gray-700 font-bold mb-4">
+                        <p className="text-[#202c33] mt-3 mb-5">
+                                {product.Description}
+                            </p>
+                        <p className="text-[#202c33] font-semibold mb-4">
                             FEATURES:
                         </p>
-                        <ul className="text-gray-700 space-y-2 list-disc ">
-                            <li className="grid"><strong>2.4 GHz Wireless Connection Plug and Forget:</strong> Cut the cord and enjoy the freedom—gaming without wires. Simply insert the nano-receiver into a USB port for fast, 2.4 GHz data transmission with virtually no delays, dropouts, or interference.</li>
-                            <li className="grid"><strong>Dual Vibration Feedback Motors Feel the Game:</strong> Discover a new level of feedback you can feel with every hit, crash, and explosion in games that support vibration feedback.</li>
-                            <li className="grid"><strong>Extensive Game Support Play Hits and Classics:</strong> Play console ports with their native-style controller or adapt a more relaxed position while enjoying PC games. F710 is easy to set up and use with your favorite games thanks to XInput/ DirectInput—the two most common input standards.</li>
-                            <li className="grid"><strong>Exclusive 4-Switch D-Pad Roll the D-pad:</strong> Provides a traditional D-pad feel for comfortable play.</li>
+                        <ul className="text-[#202c33] space-y-2 list-disc ">
+                            {product.Features.map(feature => <li key={feature}>{feature}</li>)}
                         </ul>
                     </div>
                 </div>
@@ -193,57 +143,6 @@ export default function ProductDetail() {
                     </div>
                 </div>
             </section>
-
-            <section className="py-10">
-            <div className="container mx-auto px-4">
-                {/* Header Section */}
-                <div className="text-start mb-8 flex items-center ">
-                <Image
-                            src={`/industrial.png`}
-                            alt={`industrial`}
-                            width={70}
-                            height={50}
-                            className=""
-                        />
-                        <div className="pl-2">
-
-                        
-                    <h2 className="text-2xl font-bold ">
-                        Industrial Meters</h2>
-                    <p className="text-gray-600 pt-2">
-                        Industrial meters provide accurate measurement of pressure, flow, and temperature in various industrial processes.
-                    </p>
-                    <div className="flex  mt-4 space-x-4">
-                        <img src="/mastech.png" alt="Mastech" className="h-12" />
-                        <img src="/benetech.png" alt="Lutron" className="h-12" />
-                        <img src="/luton.png" alt="Kyoritsu" className="h-12" />
-                        <img src="/kyoritsu.png" alt="Kyoritsu" className="h-12" />
-                    </div>
-                    </div>
-                </div>
-
-                {/* Products Grid */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {products.map((product, index) => (
-                        <div key={index} className="border-2  border-gray-400 border-dotted rounded-lg p-4 shadow-md flex justify-between items-end">
-                            <div className="flex gap-2 ">
-                                <img
-                                    src={product.image}
-                                    alt={product.name}
-                                    className="h-32 w-24 object-contain mb-4"
-                                />
-                                <div className="flex flex-col pt-4">
-
-                                    <h3 className="text-md ">{product.name}</h3>
-                                    <p className=" font-bold flex gap-1 items-center pt-2"><Tag className="inline-block text-[#059669] " size={16} />{product.price}</p>
-                                </div>
-                            </div>
-                            <p className="text-sm text-gray-500 mt-2 mb-2">{product.brand}</p>
-                        </div>
-                    ))}
-                </div>
-            </div>
-        </section>
         </>
     );
 }
