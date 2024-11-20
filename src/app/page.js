@@ -1,21 +1,32 @@
-import Image from "next/image";
-import Header from "./Components/header";
-import Footer from "./Components/footer";
-import RootLayout from "./layout";
-import ComparisonHub from "./Components/HomePage/hero";
-import Layout from "./Components/Layouts";
-import ProductSection from "./Components/HomePage/ProductSection";
-import ProductDetail from "./Components/Detail";
+import Layout from '@/app/Components/Layouts'
+import { API_BASE_URL } from '@/config';
+import React from 'react'
+import ComparisonHub from './Components/HomePage/hero';
+import ProductSection from './Components/HomePage/ProductSection';
 
-export default function Home() {
-  return (
-    <div >
- 
-     <Layout>
-       <ComparisonHub/>
-       <ProductSection/>
-     </Layout>
-    
-    </div>
-  );
+async function getData() {
+    const productRes = await fetch(`${API_BASE_URL}/api/categories/categories-with-products`, { cache: 'no-store' });
+    if (!productRes.ok) {
+        throw new Error('Failed to fetch data');
+    }
+    const productData = await productRes.json();
+
+    return { productData };
 }
+
+async function page() {
+    const {productData} = await getData();
+
+  return (
+    <div>
+        <Layout>
+            <ComparisonHub/>
+            {productData.map(item => (
+              <ProductSection key={item.category._id} item={item}/>
+            ))}
+        </Layout>
+    </div>
+  )
+}
+
+export default page

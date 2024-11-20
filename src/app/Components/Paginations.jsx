@@ -2,7 +2,7 @@
 import { useRouter } from 'next/navigation';
 import React from 'react';
 
-const Pagination = ({ totalPages, currentPage, route }) => {
+const Pagination = ({ totalPages, currentPage }) => {
   const router = useRouter();
 
   // Don't render pagination if there's only 1 page
@@ -11,7 +11,7 @@ const Pagination = ({ totalPages, currentPage, route }) => {
   const handlePageChange = (page) => {
     const searchParams = new URLSearchParams(window.location.search);
     searchParams.set('page', page);
-    router.push(`${route}?${searchParams.toString()}`);
+    router.push(`?${searchParams.toString()}`);
   };
 
   const generatePageNumbers = () => {

@@ -1,17 +1,17 @@
 import React from 'react'
-import Layout from '../Components/Layouts'
 import CategoryDetail from '@/screens/categorydetail/Index'
 import { API_BASE_URL } from "@/config";
+import Layout from '@/app/Components/Layouts';
 
 // Define how many posts per page
 const POSTS_PER_PAGE = 24;
 
-async function page({ searchParams }) {
+async function page({ searchParams, params }) {
   const page = searchParams.page ? parseInt(searchParams.page) : 1;
 
   // Fetch jobs data based on the search query
   const res = await fetch(
-    `${API_BASE_URL}/api/products?page=${page}&limit=${POSTS_PER_PAGE}`, 
+    `${API_BASE_URL}/api/products?page=${page}&limit=${POSTS_PER_PAGE}&category=${params.slug}`, 
     {
       cache: "no-store", // No caching to ensure fresh data
     }
@@ -28,7 +28,7 @@ async function page({ searchParams }) {
   return (
     <div>
         <Layout>
-            <CategoryDetail data={productsData.products} totalPages={productsData.pagination.totalPages} currentPage={page} />
+            <CategoryDetail data={productsData} totalPages={productsData.pagination.totalPages} currentPage={page} />
         </Layout>
     </div>
   )

@@ -5,17 +5,17 @@ export default function ComparisonHub() {
     return (
         <>
             <section className="bg-[#fef7f4] py-16">
-                <div className="  px-4 lg:px-8 flex flex-col items-center ">
+                <div className=" flex flex-col items-center layout-wrapper">
                     {/* Header Section */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 w-[94%] gap-4">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
 
 
-                        <div className="max-w-3xl flex flex-col justify-center px-8">
-                            <h1 className="text-5xl font-bold">
+                     <div className="max-w-3xl flex flex-col justify-center">
+                            <h1 className="text-5xl font-semibold text-[#202c33]">
                                 Price <span className="text-[#059669]">Comparison Hub</span> <Tag className="inline-block text-[#059669]" size={32} />
                             </h1>
-                            <p className="text-xl text-gray-600 mt-2">Find the Best Deals Across All Products</p>
-                            <p className="text-md text-gray-600 mt-4">
+                            <p className="text-xl text-[#202c33]/80 mt-2">Find the Best Deals Across All Products</p>
+                            <p className="text-md text-[#202c33]/80 mt-4">
                                 Compare prices across a wide range of products and services to find the best deals. Shop smarter and save more with our easy-to-use platform!
                             </p>
                         </div>
@@ -36,9 +36,9 @@ export default function ComparisonHub() {
                     <div className="flex flex-wrap justify-center gap-6 mt-1">
                         {/* Add brand logos here */}
                         {['amprobe', 'apple', 'anex', 'ags', 'chint', 'dell'].map((brand, index) => (
-                            <div key={index} className="bg-white p-4 rounded-md shadow-md">
+                            <div key={index} className="bg-white p-4 rounded-md shadow-sm flex justify-center items-center">
                                 <Image
-                                    src={`/path/to/brand-logos/${brand}.png`}
+                                    src={`/${brand}.png`}
                                     alt={`${brand} logo`}
                                     width={100}
                                     height={100}
