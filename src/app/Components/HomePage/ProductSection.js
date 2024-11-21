@@ -12,14 +12,23 @@ export default function ProductSection({ item }) {
             <div className="layout-wrapper">
                 {/* Header Section */}
                 <div className="mb-8 grid grid-cols-1 lg:grid-cols-2 gap-6 items-center">
-                    <div>
-                        <h2 className="text-3xl font-semibold text-[#202c33]">
-                            {item.category.Category}
-                        </h2>
-                        <p className="text-[#202c33]/80 mt-3">
-                            Industrial meters provide accurate measurement of pressure, flow, 
-                            and temperature in various industrial processes.
-                        </p>
+                    <div className="flex items-center gap-4">
+                        <div className="min-w-20 max-w-20 aspect-square overflow-hidden">
+                            <img
+                                src={item.products[2]["Main Image"]}
+                                alt={item.products[2].Name}
+                                className="object-contain"
+                            />
+                        </div>
+                        <div>
+                            <h2 className="text-3xl font-semibold text-[#202c33]">
+                                {item.category.Category}
+                            </h2>
+                            <p className="text-[#202c33]/80 mt-3">
+                                Industrial meters provide accurate measurement of pressure, flow, 
+                                and temperature in various industrial processes.
+                            </p>
+                        </div>
                     </div>
                     <div className="flex justify-end">
                         <button 

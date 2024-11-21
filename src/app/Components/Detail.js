@@ -9,16 +9,16 @@ export default function ProductDetail({product}) {
             <section className="py-10 bg-[#fef7f4]  ">
                 <div className="container mx-auto px-4">
                     {/* Breadcrumb */}
-                    <nav className="text-sm text-[#202c33]/70 mb-4">
-                        <a href="#" className="mx-2 hover:underline">Account</a> /
-                        <a href="#" className="mx-2 hover:underline">Gaming</a> /
+                    <nav className="text-sm text-[#202c33]/70 mb-8">
+                        <a href="#" className="mx-2 hover:underline">Home</a> /
+                        <a href="#" className="mx-2 hover:underline">{product.Product}</a> /
                         <span className="ml-2 text-[#202c33] bold">{product.Name}</span>
                     </nav>
 
                     {/* Product Section */}
-                    <div className="flex flex-col lg:flex-row gap-8">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                         {/* Product Image */}
-                        <div className="lg:w-1/2 bg-white flex justify-center items-center">
+                        <div className="bg-white flex justify-center items-center">
                             <img
                                 src={product["Main Image"]} // Replace with the actual image path
                                 alt="Logitech F710 Wireless Gamepad"
@@ -27,8 +27,9 @@ export default function ProductDetail({product}) {
                         </div>
 
                         {/* Product Info */}
-                        <div className="lg:w-1/2">
-                            <h1 className="text-3xl font-semibold">{product.Name}</h1>
+                        <div>
+                            <h1 className="text-3xl font-semibold text-[#202c33]">{product.Name}</h1>
+                            <h3 className="text-2xl font-semibold text-[#202c33]/90 mt-4">{product.Price}</h3>
                             <p className="text-[#202c33] mt-3">
                                 {product.Description}
                             </p>
@@ -89,58 +90,37 @@ export default function ProductDetail({product}) {
                         <p className="text-[#202c33] font-semibold mb-4">
                             FEATURES:
                         </p>
-                        <ul className="text-[#202c33] space-y-2 list-disc ">
+                        <ul className="text-[#202c33] space-y-2 ">
                             {product.Features.map(feature => <li key={feature}>{feature}</li>)}
                         </ul>
                     </div>
                 </div>
             </section>
 
-            <section className="bg-white border-t-2 border-b-2 border-dotted border-gray-600 py-4">
+            <section className="bg-white border-t border-dotted border-black py-6">
                 <div className="container mx-auto px-4">
 
                     <div className="flex items-center space-x-2 mb-4">
-                        <FileText className="w-6 h-10 text-gray-700" />
-                        <h2 className="text-xl font-semibold">Specification</h2>
+                        <h2 className="text-[#202c33] text-3xl font-semibold mb-4 flex items-center gap-2">
+                        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M30.6666 4.66666H27.3333V4.00002C27.3333 3.26667 26.7333 2.66668 25.9999 2.66668H24V1.99997C24 0.866628 23.1333 0 22 0H18C16.8666 0 16 0.933347 16 1.99997V2.6666H14C13.2667 2.6666 12.6667 3.2666 12.6667 3.99994V4.66658H9.33337C7.46668 4.66658 6.00006 6.13328 6.00006 7.99989V36.6665C6.00006 38.5332 7.46676 39.9998 9.33337 39.9998H30.6667C32.5334 39.9998 34 38.5331 34 36.6665V7.99997C34 6.13335 32.5333 4.66666 30.6666 4.66666ZM13.9999 4.00002H16.6666C17.0666 4.00002 17.3333 3.73339 17.3333 3.33339V1.99997C17.3333 1.59998 17.5999 1.33334 17.9999 1.33334H21.9999C22.3999 1.33334 22.6665 1.6667 22.6665 1.99997V3.33331C22.6665 3.73331 22.9332 3.99994 23.3332 3.99994H25.9999V5.33329V8.6666H13.9999V5.33337V4.00002ZM32.6666 36.6666C32.6666 37.8 31.8 38.6666 30.6667 38.6666H9.33337C8.20003 38.6666 7.3334 37.8 7.3334 36.6666V7.99997C7.3334 6.86662 8.20003 6 9.33337 6H12.6667V8.66668C12.6667 9.40003 13.2667 10 14 10H26C26.7334 10 27.3334 9.40003 27.3334 8.66668V6H30.6667C31.8 6 32.6666 6.86662 32.6666 7.99997V36.6666Z" fill="black"/>
+<path d="M22 31.9999H11.3333C10.9333 31.9999 10.6667 32.2666 10.6667 32.6666C10.6667 33.0666 10.9333 33.3332 11.3333 33.3332H22C22.4 33.3332 22.6666 33.0666 22.6666 32.6666C22.6666 32.2666 22.4 31.9999 22 31.9999Z" fill="black"/>
+<path d="M22 25.9999H11.3333C10.9333 25.9999 10.6667 26.2666 10.6667 26.6666C10.6667 27.0666 10.9333 27.3332 11.3333 27.3332H22C22.4 27.3332 22.6666 27.0666 22.6666 26.6666C22.6666 26.2667 22.4 25.9999 22 25.9999Z" fill="black"/>
+<path d="M22 19.9999H11.3333C10.9333 19.9999 10.6667 20.2666 10.6667 20.6666C10.6667 21.0666 10.9333 21.3332 11.3333 21.3332H22C22.4 21.3332 22.6666 21.0666 22.6666 20.6666C22.6666 20.2667 22.4 19.9999 22 19.9999Z" fill="black"/>
+<path d="M22 13.9999H11.3333C10.9333 13.9999 10.6667 14.2666 10.6667 14.6666C10.6667 15.0666 10.9333 15.3332 11.3333 15.3332H22C22.4 15.3332 22.6666 15.0666 22.6666 14.6666C22.6666 14.2666 22.4 13.9999 22 13.9999Z" fill="black"/>
+<path d="M29.7333 12.1333C29.4667 11.9333 29 12 28.8 12.2667L26.6074 15.0074L25.8 14.2C25.5334 13.9334 25.1334 13.9334 24.8667 14.2C24.6 14.4666 24.6 14.8666 24.8667 15.1334L26.1647 16.4314C26.1946 16.4698 26.2283 16.5046 26.2666 16.5333C26.274 16.537 26.2813 16.5406 26.2886 16.5442C26.3952 16.6255 26.5105 16.6666 26.6666 16.6666C26.6917 16.6666 26.7156 16.6656 26.7387 16.6635C26.9138 16.6486 27.0827 16.5759 27.2 16.4L29.8667 13.0667C30.0666 12.8 30 12.3333 29.7333 12.1333Z" fill="black"/>
+<path d="M29.7333 18.1333C29.4667 17.9333 29 18 28.8 18.2667L26.6074 21.0074L25.8 20.2C25.5334 19.9334 25.1334 19.9334 24.8667 20.2C24.6 20.4666 24.6 20.8666 24.8667 21.1334L26.1647 22.4314C26.1946 22.4699 26.2283 22.5046 26.2666 22.5333C26.274 22.537 26.2813 22.5406 26.2886 22.5443C26.3952 22.6256 26.5105 22.6667 26.6666 22.6667C26.6917 22.6667 26.7156 22.6657 26.7387 22.6636C26.9138 22.6487 27.0827 22.576 27.2 22.4001L29.8667 19.0667C30.0666 18.8 30 18.3333 29.7333 18.1333Z" fill="black"/>
+<path d="M29.7333 24.1333C29.4667 23.9333 29 24 28.8 24.2667L26.6074 27.0074L25.8 26.2C25.5334 25.9334 25.1334 25.9334 24.8667 26.2C24.6 26.4667 24.6 26.8666 24.8667 27.1334L26.1647 28.4314C26.1946 28.4698 26.2283 28.5046 26.2666 28.5333C26.274 28.537 26.2813 28.5406 26.2886 28.5442C26.3952 28.6255 26.5105 28.6666 26.6666 28.6666C26.6917 28.6666 26.7156 28.6656 26.7387 28.6635C26.9138 28.6486 27.0827 28.5759 27.2 28.4L29.8667 25.0667C30.0666 24.8 30 24.3333 29.7333 24.1333Z" fill="black"/>
+<path d="M29.7333 30.1333C29.4667 29.9333 29 30 28.8 30.2667L26.6074 33.0074L25.8 32.2C25.5334 31.9334 25.1334 31.9334 24.8667 32.2C24.6 32.4666 24.6 32.8666 24.8667 33.1334L26.1647 34.4314C26.1946 34.4699 26.2283 34.5046 26.2666 34.5333C26.274 34.537 26.2813 34.5406 26.2886 34.5443C26.3952 34.6256 26.5105 34.6667 26.6666 34.6667C26.6917 34.6667 26.7156 34.6657 26.7387 34.6636C26.9138 34.6487 27.0827 34.576 27.2 34.4001L29.8667 31.0667C30.0666 30.8 30 30.3333 29.7333 30.1333Z" fill="black"/>
+</svg>
+
+                            Specifications
+                        </h2>
                     </div>
 
-                    <div className="border border-gray-200 rounded-lg overflow-hidden">
-                        <div className="bg-gray-100 p-2 font-bold">Display Specification</div>
-
-                        <div className="px-2 border-t border-gray-200 flex items-center">
-                            <p className="w-[200px]  ">Display:</p>
-                            <hr className="h-10 border-l border-gray-400 mx-2" />
-
-                            <p className="p-2"> Digital: 6000 counts updates 4/sec | Analog: 32 segments, updates 40/sec | Frequency: 19,999 counts, updates 3/sec at  10 Hz</p>
-                        </div>
-
-                        <div className="bg-gray-100 p-2 font-bold">Power</div>
-                        <div className="px-2 border-t border-gray-200 flex items-center">
-                            <p className="w-[200px] p-2 font-medium">AC Current:</p>
-                            <hr className="h-10 border-l border-gray-400 mx-2" />
-                            <p className="p-2">Maximum amps: 10 A (20 A for 30 seconds maximum) | Amps accuracy: ±(1.2% + 2) | Maximum resolution: 0.1 μA</p>
-                        </div>
-
-                        <div className="px-2 border-t border-gray-200 flex items-center">
-                            <p className="w-[200px] p-2 font-medium">Display Specification:</p>
-                            <hr className="h-10 border-l border-gray-400 mx-2" />
-                            <p className="p-2">Maximum voltage: 1000 V | Accuracy: ±(0.5% + 2) | Maximum resolution: 0.1 mV</p>
-                        </div>
-
-                        <div className="px-2 border-t border-gray-200 flex items-center">
-                            <p className="w-[200px] p-2 font-medium">Display Specification:</p>
-                            <hr className="h-10 border-l border-gray-400 mx-2" />
-                            <p className="p-2">Maximum amps: 10 A (20 A for 30 seconds maximum) | Amps accuracy: ±(0.4% + 2) | Maximum resolution: 0.01 mA</p>
-                        </div>
-
-                        <div className="px-2 border-t border-gray-200 flex items-center">
-                            <p className="w-[200px] p-2 font-medium">Display Specification:</p>
-                            <hr className="h-10 border-l border-gray-400 mx-2" />
-                            <p className="p-2">Maximum voltage: 1000 V | Accuracy: ±(0.1% + 1) | Maximum resolution: 100 μV</p>
-                        </div>
-
-
-                    </div>
+                    <p className="text-[#202c33] mt-3 mb-5">
+                                No Specifications
+                            </p>
                 </div>
             </section>
         </>

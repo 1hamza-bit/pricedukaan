@@ -6,7 +6,7 @@ function ProductCard({product}) {
     <Link
     href={`/products/${product.Name}`}
     key={product._id}
-    className="card-border rounded-md px-4 py-6"
+    className="card-border rounded-md px-4 py-6 hover:bg-neutral-50 transition-all"
   >
     <div className="flex gap-4">
       <div className="min-w-24 max-w-24 aspect-square overflow-hidden">

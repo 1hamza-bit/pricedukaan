@@ -1,7 +1,8 @@
 import Image from 'next/image';
 import { Tag } from 'lucide-react';
+import Link from 'next/link';
 
-export default function ComparisonHub() {
+export default function ComparisonHub({productData}) {
     return (
         <>
             <section className="bg-[#fef7f4] py-16">
@@ -49,36 +50,22 @@ export default function ComparisonHub() {
                     </div>
                 </div>
             </section>
-            <section className="bg-white border-t-2 border-b-2 border-dotted border-gray-600 py-16">
+            <section className="bg-white border-y border-dashed border-black py-16">
                 {/* Brand Logos */}
-                <div className="flex flex-wrap justify-center gap-6 mt-1">
+                <div className="grid grid-cols-10 gap-6 layout-wrapper">
                     {/* Add brand logos here */}
-                    {['amprobe', 'apple', 'anex', 'ags', 'chint', 'dell'].map((brand, index) => (
-                        <div key={index} className="bg-white p-4 rounded-md shadow-md">
-                            <Image
-                                src={`/path/to/brand-logos/${brand}.png`}
-                                alt={`${brand} logo`}
-                                width={100}
-                                height={100}
-                                className="mx-auto"
-                            />
-                        </div>
-                    ))}
-                </div>
-
-                {/* Brand Logos */}
-                <div className="flex flex-wrap justify-center gap-6 mt-1">
-                    {/* Add brand logos here */}
-                    {['amprobe', 'apple', 'anex', 'ags', 'chint', 'dell'].map((brand, index) => (
-                        <div key={index} className="bg-white p-4 rounded-md shadow-md">
-                            <Image
-                                src={`/path/to/brand-logos/${brand}.png`}
-                                alt={`${brand} logo`}
-                                width={100}
-                                height={100}
-                                className="mx-auto"
-                            />
-                        </div>
+                    {productData.map(item => (
+                        <Link href={`/categories/${item.category.Category}`} key={item.category._id} className="bg-white p-6 rounded-md shadow-sm hover:shadow-lg transition-all border">
+                            <div className="min-w-20 max-w-20 aspect-square overflow-hidden">
+                                {item.products?.[0] && (
+                                    <img
+                                        src={item.products[0]["Main Image"]}
+                                        alt={item.products[0].Name}
+                                        className="object-contain"
+                                    />
+                                )}
+                            </div>
+                        </Link>
                     ))}
                 </div>
 

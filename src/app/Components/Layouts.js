@@ -1,6 +1,7 @@
 import { Poppins } from 'next/font/google';
 import Footer from './footer';
 import Header from './header';
+import NextTopLoader from 'nextjs-toploader';
 
 // Load the Poppins font
 const poppins = Poppins({
@@ -11,8 +12,9 @@ const poppins = Poppins({
 export default function Layout({ children }) {
     return (
         <div className={poppins.className}>
+            <NextTopLoader color='#059669' showSpinner={false} />
             <Header />
-            <main>{children}</main>
+                <main>{children}</main>
             <Footer />
         </div>
     );

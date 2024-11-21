@@ -16,8 +16,50 @@ async function getData(slug) {
 async function page({ params }) {
     const {productData} = await getData(params.slug);
 
+    const jsonLd =         {
+        "@context": "https://schema.org/",
+        "@type": "Product",
+        name: productData.Name,
+        image: productData.Images,
+        description: productData.Description,
+        "brand": {
+          "@type": "Brand",
+          name: productData.Product
+        },
+        "review": {
+          "@type": "Review",
+          "reviewRating": {
+            "@type": "Rating",
+            "ratingValue": 5,
+            "bestRating": 5
+          },
+          "author": {
+            "@type": "Person",
+            "name": "Ahsan"
+          }
+        },
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": 5,
+          "reviewCount": 89
+        },
+        "offers": {
+          "@type": "Offer",
+          "url": `https://pricedukan.com/products/${productData.Name}`,
+          "priceCurrency": "PKR",
+          price: productData.price,
+          "priceValidUntil": "2025-11-20",
+          "itemCondition": "https://schema.org/UsedCondition",
+          "availability": "https://schema.org/InStock"
+        }
+      }
+
   return (
     <div>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
         <Layout>
             <ProductDetail product={productData}/>
         </Layout>

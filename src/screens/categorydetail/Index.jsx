@@ -9,8 +9,8 @@ export default function CategoryDetail({ data, totalPages, currentPage }) {
         <div className="bg-[#FEF7F4]">
             <div className="py-8 layout-wrapper">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-                    <div>
-                        <img className="rounded" src="/laptop.png" alt="" />
+                    <div className="flex justify-center items-center bg-white rounded">
+                        <img className="w-4/6" src={data.products[2]["Main Image"]} alt={data.products[0].Product} />
                     </div>
                     <div>
                         <h1 className="text-3xl font-semibold text-[#202c33]">{data.products[0].Product}</h1>
