@@ -47,7 +47,7 @@ async function page({ params }) {
           "@type": "Offer",
           "url": `https://pricedukan.com/products/${productData.Name}`,
           "priceCurrency": "PKR",
-          price: productData.price,
+          price: productData.Price,
           "priceValidUntil": "2025-11-20",
           "itemCondition": "https://schema.org/UsedCondition",
           "availability": "https://schema.org/InStock"

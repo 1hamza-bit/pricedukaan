@@ -9,11 +9,11 @@ const poppins = Poppins({
     weight: ['400', '600', '700'], // Specify the weights you need
 });
 
-export default function Layout({ children }) {
+export default function Layout({ children, productData }) {
     return (
         <div className={poppins.className}>
             <NextTopLoader color='#059669' showSpinner={false} />
-            <Header />
+            <Header productData={productData}/>
                 <main>{children}</main>
             <Footer />
         </div>

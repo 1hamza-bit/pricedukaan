@@ -8,7 +8,7 @@ export default function ProductSection({ item }) {
     }
 
     return (
-        <section className="py-10 border-b border-black border-dashed">
+        <section id={item.category._id} className="py-10 border-b border-black border-dashed">
             <div className="layout-wrapper">
                 {/* Header Section */}
                 <div className="mb-8 grid grid-cols-1 lg:grid-cols-2 gap-6 items-center">
@@ -25,8 +25,7 @@ export default function ProductSection({ item }) {
                                 {item.category.Category}
                             </h2>
                             <p className="text-[#202c33]/80 mt-3">
-                                Industrial meters provide accurate measurement of pressure, flow, 
-                                and temperature in various industrial processes.
+                            Browse our selection of {item.category.Category}, offering quality and variety to suit every preference and need.
                             </p>
                         </div>
                     </div>
@@ -34,7 +33,7 @@ export default function ProductSection({ item }) {
                         <button 
                             className="bg-[#059669] mt-5 text-white font-medium py-2.5 px-6 flex gap-2 rounded mb-6 hover:bg-green-600 transition"
                         >
-                            <Link href={`/categories/${item.category.Category}`}>
+                            <Link href={`/category-detail/${item.category.Category}`}>
                                 View All
                             </Link>
                         </button>

@@ -19,7 +19,7 @@ async function page() {
 
   return (
     <div>
-        <Layout>
+        <Layout productData={productData}>
             <ComparisonHub productData={productData}/>
             {productData.map(item => (
               <ProductSection key={item.category._id} item={item}/>

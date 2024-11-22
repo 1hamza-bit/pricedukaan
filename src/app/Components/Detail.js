@@ -98,7 +98,7 @@ export default function ProductDetail({product}) {
             </section>
 
             <section className="bg-white border-t border-dotted border-black py-6">
-                <div className="container mx-auto px-4">
+                <div className="layout-wrapper">
 
                     <div className="flex items-center space-x-2 mb-4">
                         <h2 className="text-[#202c33] text-3xl font-semibold mb-4 flex items-center gap-2">

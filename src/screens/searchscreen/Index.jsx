@@ -1,5 +1,4 @@
 import ProductCard from "@/app/Components/cards/ProductCard";
-import Link from "next/link";
 
 
 export default function SearchScreen({ data, query }) {
