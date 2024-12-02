@@ -90,7 +90,7 @@ export default function ComparisonHub({ productData, additionalData }) {
                     {additionalData.data.map(item => (
                                             <Link
                                             key={item._id}
-                                            href={`/categories/computer-products`}
+                                            href={`/subcategories/${item.categoryName}`}
                                             className="bg-white p-6 rounded-md hover:shadow-lg transition-all border border-dashed"
                                         >
                                             <div className="aspect-square overflow-hidden">

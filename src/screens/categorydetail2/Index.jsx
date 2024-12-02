@@ -13,9 +13,11 @@ export default function CategoryDetail2({ data, totalPages, currentPage }) {
                         <img className="w-4/6" src={data.products[2]["Image URL"]} alt={data.products[0].Category} />
                     </div>
                     <div>
-                        <h1 className="text-3xl font-semibold text-[#202c33]">{data.products[0].Category}</h1>
+                        <h1 className="text-3xl font-semibold text-[#202c33]">
+                          {data.products[0].Category.split('>').pop().trim()}
+                        </h1>
                         <p className="mt-3 leading-relaxed text-[#202c33]/80 ">
-                        Browse our selection of {data.products[0].Category}, offering quality and variety to suit every preference and need.
+                        Browse our selection of {data.products[0].Category.split('>').pop().trim()}, offering quality and variety to suit every preference and need.
                         </p>
                         <div className="px-4 py-3 border border-[#4F4F4F80]/50 mt-6 rounded-sm flex items-center space-x-1.5">
                             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

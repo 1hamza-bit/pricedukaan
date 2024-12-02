@@ -4,7 +4,7 @@ import React from 'react';
 function ProductCard2({ product }) {
   return (
     <Link
-      href={`/products/${product.Name}`}
+      href={`/product/${product.Name}`}
       key={product._id}
       className="card-border relative rounded-md px-4 py-6 hover:bg-neutral-50 transition-all"
     >
