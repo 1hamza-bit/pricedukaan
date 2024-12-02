@@ -11,7 +11,7 @@ async function page({ searchParams, params }) {
 
   // Fetch jobs data based on the search query
   const res = await fetch(
-    `http://localhost:5000/api/products/w11?page=${page}&limit=${POSTS_PER_PAGE}&category=${params.slug}`, 
+    `${API_BASE_URL}/api/products/w11?page=${page}&limit=${POSTS_PER_PAGE}&category=${params.slug}`, 
     {
       cache: "no-store", // No caching to ensure fresh data
     }

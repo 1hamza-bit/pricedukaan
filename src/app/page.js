@@ -8,7 +8,7 @@ import ProductSection2 from './Components/HomePage/ProductSection2';
 async function getData() {
     const [productRes, additionalDataRes] = await Promise.all([
         fetch(`${API_BASE_URL}/api/categories/categories-with-products`, { cache: 'no-store' }),
-        fetch(`http://localhost:5000/api/main-categories/products`, { cache: 'no-store' }) // Replace with the actual API endpoint
+        fetch(`${API_BASE_URL}/api/main-categories/products`, { cache: 'no-store' }) // Replace with the actual API endpoint
     ]);
 
     if (!productRes.ok || !additionalDataRes.ok) {
