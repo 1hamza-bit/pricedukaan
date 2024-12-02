@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState, useEffect } from 'react';
 
-export default function ComparisonHub({ productData }) {
+export default function ComparisonHub({ productData, additionalData }) {
     // Hero images array
     const heroImages = [
         { src: "i1.png", alt: 'Tools and Products' },
@@ -30,7 +30,7 @@ export default function ComparisonHub({ productData }) {
                     {/* Header Section */}
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div className="flex flex-col justify-center">
-                            <h1 className="text-3xl lg:text-5xl font-semibold text-[#202c33] leading-[1.15]">
+                            <h1 className="text-3xl lg:text-5xl font-semibold text-[#202c33] leading-[1.15] lg:leading-[1.15]">
                                 Find Best Prices of <br/> <span className="text-[#059669]">
                                     <ReactTyped strings={["Laptops", "Cameras", "Cartridges", "Casing", "Desktop Computers", "Gaming Products"]} typeSpeed={40} backSpeed={30} loop />
                                 </span>
@@ -87,6 +87,22 @@ export default function ComparisonHub({ productData }) {
                         </div>
                         <p className="text-[#202c33] text-center">Computer Products</p>
                     </Link>
+                    {additionalData.data.map(item => (
+                                            <Link
+                                            key={item._id}
+                                            href={`/categories/computer-products`}
+                                            className="bg-white p-6 rounded-md hover:shadow-lg transition-all border border-dashed"
+                                        >
+                                            <div className="aspect-square overflow-hidden">
+                                                <img
+                                                    src={item.subcategories[0].products[0]["Image URL"]}
+                                                    alt={item.categoryName}
+                                                    className="object-contain"
+                                                />
+                                            </div>
+                                            <p className="text-[#202c33] text-center">{item.categoryName}</p>
+                                        </Link>
+                    ))}
                 </div>
             </section>
         </>
