@@ -21,7 +21,7 @@ export default function ProductSection({ item }) {
                             />
                         </div>
                         <div>
-                            <h2 className="text-3xl font-semibold text-[#202c33]">
+                            <h2 className="text-2xl lg:text-3xl font-semibold text-[#202c33]">
                                 {item.category.Category}
                             </h2>
                             <p className="text-[#202c33]/80 mt-3">
@@ -29,7 +29,7 @@ export default function ProductSection({ item }) {
                             </p>
                         </div>
                     </div>
-                    <div className="flex justify-end">
+                    <div className="flex lg:justify-end">
                         <button 
                             className="bg-[#059669] mt-5 text-white font-medium py-2.5 px-6 flex gap-2 rounded mb-6 hover:bg-green-600 transition"
                         >

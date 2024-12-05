@@ -13,7 +13,8 @@ async function getData(slug) {
 }
 
 export async function generateMetadata({ params }) {
-  const { productData } = await getData(params.slug);
+  const {slug} = await params;
+  const { productData } = await getData(slug);
 
   const metadata = {
     metadataBase: new URL('https://pricedukan.com'),
@@ -23,7 +24,7 @@ export async function generateMetadata({ params }) {
     openGraph: {
       title: `${productData.Name} | Price Dukan`,
       description: `Get the best price for ${productData.Name} on Price Dukan. Shop smarter and save more!`,
-      url: `https://pricedukan.com/products/${params.slug}`,
+      url: `https://pricedukan.com/products/${params.Name}`,
       siteName: 'Price Dukan',
       images: productData.Images.map((image) => ({
         url: image,
@@ -38,7 +39,7 @@ export async function generateMetadata({ params }) {
       card: 'summary_large_image',
       site: '@PriceDukan',
       title: `${productData.Name} | Price Dukan`,
-      description: `Buy ${productData.Name} for just PKR ${productData.Price}.`,
+      description: `Buy ${productData.Name} for just ${productData.Price}.`,
       image: productData.Images[0],
     },
   };
@@ -47,7 +48,8 @@ export async function generateMetadata({ params }) {
 }
 
 async function page({ params }) {
-  const { productData } = await getData(params.slug);
+  const {slug} = await params;
+  const { productData } = await getData(slug);
 
   const jsonLd = {
     "@context": "https://schema.org/",

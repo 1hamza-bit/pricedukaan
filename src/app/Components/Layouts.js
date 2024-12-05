@@ -12,9 +12,9 @@ const poppins = Poppins({
 export default function Layout({ children, productData }) {
     return (
         <div className={poppins.className}>
-            <NextTopLoader color='#059669' showSpinner={false} />
+            <NextTopLoader color='#6ee7c1' showSpinner={false} />
             <Header productData={productData}/>
-                <main>{children}</main>
+            <main>{children}</main>
             <Footer />
         </div>
     );

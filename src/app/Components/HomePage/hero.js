@@ -73,7 +73,7 @@ export default function ComparisonHub({ productData, additionalData }) {
 
             <section className="bg-white border-y border-dashed border-black py-16">
                 {/* Brand Logos */}
-                <div className="grid grid-cols-6 gap-6 layout-wrapper">
+                <div className="grid grid-cols-2 lg:grid-cols-4 xl:grid-cols-6 gap-6 layout-wrapper">
                     <Link
                         href={`/categories/computer-products`}
                         className="bg-white p-6 rounded-md hover:shadow-lg transition-all border border-dashed"
@@ -87,22 +87,6 @@ export default function ComparisonHub({ productData, additionalData }) {
                         </div>
                         <p className="text-[#202c33] text-center">Computer Products</p>
                     </Link>
-                    {additionalData.data.map(item => (
-                                            <Link
-                                            key={item._id}
-                                            href={`/subcategories/${item.categoryName}`}
-                                            className="bg-white p-6 rounded-md hover:shadow-lg transition-all border border-dashed"
-                                        >
-                                            <div className="aspect-square overflow-hidden">
-                                                <img
-                                                    src={item.subcategories[0].products[0]["Image URL"]}
-                                                    alt={item.categoryName}
-                                                    className="object-contain"
-                                                />
-                                            </div>
-                                            <p className="text-[#202c33] text-center">{item.categoryName}</p>
-                                        </Link>
-                    ))}
                 </div>
             </section>
         </>

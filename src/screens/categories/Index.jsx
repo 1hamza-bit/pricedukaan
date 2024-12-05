@@ -15,12 +15,12 @@ export default function Category({ productData }) {
       </div>
       <div className="py-8">
         {/* Products Grid */}
-        <div className="grid grid-cols-6 gap-6 layout-wrapper">
+        <div className="grid grid-cols-2 lg:grid-cols-4 xl:grid-cols-6 gap-6 layout-wrapper">
           {productData
             .filter(item => item.products?.length > 0) // Only include items with products
             .map(item => (
               <Link
-                key={item.category?.id} // Add a key prop for React optimization
+                key={item.category?._id} // Add a key prop for React optimization
                 href={`/category-detail/${item.category.Category}`}
                 className="bg-white p-6 rounded-md hover:shadow-lg transition-all border border-dashed"
               >

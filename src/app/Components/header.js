@@ -50,10 +50,6 @@ export default function Header({ productData }) {
           </Link>
 
           <div className="hidden lg:flex items-center space-x-6 relative">
-            <Link href="/" className="text-[#202c33]/90">
-              Home
-            </Link>
-
 
             <div ref={dropdownRef} className="relative">
               {pathname === '/' && <div
@@ -91,7 +87,7 @@ export default function Header({ productData }) {
 
           {/* Search Bar */}
           <form className="hidden lg:flex items-center" onSubmit={handleSearch}>
-            <div className="relative flex-1 w-[300px] md:w-[500px] hover:w-[700px] tt">
+            <div className="relative flex-1 w-[300px] md:w-[500px] hover:w-[600px] transition-all duration-300">
               <input
                 type="text"
                 name="search"

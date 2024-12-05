@@ -14,9 +14,43 @@ body {
 }
 
 .layout-wrapper {
-    @apply container mx-[4vw] 2xl:mx-auto;
+    @apply container mx-auto px-[4vw] 2xl:px-0;
 }
 
 .card-border {
     border: 1px dashed #898989;
 }
+
+
+.loader-wrapper {
+    width: 100%;
+    height: 50vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .loader {
+    width: 50px;
+    aspect-ratio: 1;
+    display: grid;
+    border: 4px solid #0000;
+    border-radius: 50%;
+    border-right-color: #059669;
+    animation: l15 1s infinite linear;
+  }
+  .loader::before,
+  .loader::after {    
+    content: "";
+    grid-area: 1/1;
+    margin: 2px;
+    border: inherit;
+    border-radius: 50%;
+    animation: l15 2s infinite;
+  }
+  .loader::after {
+    margin: 8px;
+    animation-duration: 3s;
+  }
+  @keyframes l15{ 
+    100%{transform: rotate(1turn)}
+  }

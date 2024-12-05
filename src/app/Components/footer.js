@@ -3,7 +3,7 @@ import { Facebook, Twitter, Instagram, Linkedin, ArrowRight, Send } from 'lucide
 export default function Footer() {
   return (
     <footer className="bg-black text-white py-10">
-      <div className="w-4/5 mx-auto px-4 lg:px-8">
+      <div className="layout-wrapper">
         {/* Footer Links */}
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-8">
           {/* Our Policies */}
@@ -73,7 +73,7 @@ export default function Footer() {
 
         {/* Bottom Footer */}
         <div className="mt-10 border-t border-gray-700 pt-4 text-center text-md flex flex-col sm:flex-row justify-between items-center text-gray-500">
-          <p>© Copyright W11 Solutions 2024. All rights reserved</p>
+          <p>© Copyright Price Dukan Solutions 2024. All rights reserved</p>
           <div className="flex justify-center items-start ">
             <img src="/payments.png" alt="Payment methods" className="h-12" />
           </div>

@@ -3,7 +3,6 @@ import React from 'react';
 import Layout from '@/app/Components/Layouts';
 import ComparisonHub from './Components/HomePage/hero';
 import ProductSection from './Components/HomePage/ProductSection';
-import ProductSection2 from './Components/HomePage/ProductSection2';
 import { API_BASE_URL } from '@/config';
 
 // Define metadata
@@ -25,7 +24,6 @@ export const metadata = {
         alt: "Price Dukan Banner",
       },
     ],
-    locale: "en_US",
     type: "website",
   },
   twitter: {
@@ -37,30 +35,21 @@ export const metadata = {
   },
 };
 
-
-
 // Fetch data function
 async function getData() {
-  const [productRes, additionalDataRes] = await Promise.all([
-    fetch(`${API_BASE_URL}/api/categories/categories-with-products`, { cache: 'no-store' }),
-    fetch(`${API_BASE_URL}/api/main-categories/products`, { cache: 'no-store' }),
-  ]);
+  const productRes = await fetch(`${API_BASE_URL}/api/categories/categories-with-products`, { cache: 'no-store' });
 
-  if (!productRes.ok || !additionalDataRes.ok) {
-    throw new Error('Failed to fetch data');
+  if (!productRes.ok) {
+    throw new Error('Failed to fetch product data');
   }
 
-  const [productData, additionalData] = await Promise.all([
-    productRes.json(),
-    additionalDataRes.json(),
-  ]);
-
-  return { productData, additionalData };
+  const productData = await productRes.json();
+  return { productData };
 }
 
 // Homepage component
 async function Page() {
-  const { productData, additionalData } = await getData();
+  const { productData } = await getData();
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -79,28 +68,20 @@ async function Page() {
       "addressLocality": "Paris",
       "addressCountry": "FR",
       "addressRegion": "Ile-de-France",
-      "postalCode": "75001"
+      "postalCode": "75001",
     },
-  }
-
+  };
 
   return (
     <div>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <Layout productData={productData}>
-        <ComparisonHub productData={productData} additionalData={additionalData} />
+        <ComparisonHub productData={productData} />
         {productData.map((item) => (
           <ProductSection key={item.category._id} item={item} />
-        ))}
-        {additionalData.data.map((item) => (
-          <div key={item._id}>
-            {item.subcategories.map((item2) => (
-              <ProductSection2 key={item2._id} item={item2} />
-            ))}
-          </div>
         ))}
       </Layout>
     </div>

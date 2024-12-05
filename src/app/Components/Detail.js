@@ -1,12 +1,15 @@
 // components/ProductDetail.js
 
-import { FileText, MessageSquare, Notebook } from "lucide-react";
+import { MessageSquare } from "lucide-react";
+import Link from "next/link";
 
 export default function ProductDetail({product}) {
 
+    const whatsappLink = `https://wa.me/+923302635347?text=${encodeURIComponent(product.Name)}`;
+
     return (
         <>
-            <section className="py-10 bg-[#fef7f4]  ">
+            <section className="py-10 bg-[#fef7f4]">
                 <div className="container mx-auto px-4">
                     {/* Breadcrumb */}
                     <nav className="text-sm text-[#202c33]/70 mb-8">
@@ -28,14 +31,16 @@ export default function ProductDetail({product}) {
 
                         {/* Product Info */}
                         <div>
-                            <h1 className="text-3xl font-semibold text-[#202c33]">{product.Name}</h1>
-                            <h3 className="text-2xl font-semibold text-[#202c33]/90 mt-4">{product.Price}</h3>
+                            <h1 className="text-2xl lg:text-3xl font-semibold text-[#202c33]">{product.Name}</h1>
+                            <h3 className="text-xl lg:text-2xl font-semibold text-[#202c33]/90 mt-4">{product.Price}</h3>
                             <p className="text-[#202c33] mt-3">
                                 {product.Description}
                             </p>
-                            <button className="bg-[#059669] mt-5 text-white font-medium py-2.5 px-6 flex gap-2 rounded mb-6 hover:bg-green-600 transition">
-                                <MessageSquare size={22} /> Inquire Now
-                            </button>
+                            <Link href={whatsappLink} target="_blank">
+                                <button className="bg-[#059669] mt-5 text-white font-medium py-2.5 px-6 flex gap-2 rounded mb-6 hover:bg-green-600 transition">
+                                    <MessageSquare size={22} /> Inquire Now
+                                </button>
+                            </Link>
 
                             {/* Product Details Table */}
                             <div className="border border-[#4F4F4F80]/50 rounded bg-none">
@@ -68,7 +73,7 @@ export default function ProductDetail({product}) {
                 <div className="layout-wrapper">
 
                     <div>
-                        <h2 className="text-[#202c33] text-3xl font-semibold mb-4 flex items-center gap-3">
+                        <h2 className="text-[#202c33] text-2xl lg:text-3xl font-semibold mb-4 flex items-center gap-3">
                         <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M13.75 9.375H32.5V10.625H13.75V9.375Z" fill="black"/>
 <path d="M13.75 11.875H35V13.125H13.75V11.875Z" fill="black"/>
@@ -101,7 +106,7 @@ export default function ProductDetail({product}) {
                 <div className="layout-wrapper">
 
                     <div className="flex items-center space-x-2 mb-4">
-                        <h2 className="text-[#202c33] text-3xl font-semibold mb-4 flex items-center gap-2">
+                        <h2 className="text-[#202c33] text-2xl lg:text-3xl font-semibold mb-4 flex items-center gap-2">
                         <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M30.6666 4.66666H27.3333V4.00002C27.3333 3.26667 26.7333 2.66668 25.9999 2.66668H24V1.99997C24 0.866628 23.1333 0 22 0H18C16.8666 0 16 0.933347 16 1.99997V2.6666H14C13.2667 2.6666 12.6667 3.2666 12.6667 3.99994V4.66658H9.33337C7.46668 4.66658 6.00006 6.13328 6.00006 7.99989V36.6665C6.00006 38.5332 7.46676 39.9998 9.33337 39.9998H30.6667C32.5334 39.9998 34 38.5331 34 36.6665V7.99997C34 6.13335 32.5333 4.66666 30.6666 4.66666ZM13.9999 4.00002H16.6666C17.0666 4.00002 17.3333 3.73339 17.3333 3.33339V1.99997C17.3333 1.59998 17.5999 1.33334 17.9999 1.33334H21.9999C22.3999 1.33334 22.6665 1.6667 22.6665 1.99997V3.33331C22.6665 3.73331 22.9332 3.99994 23.3332 3.99994H25.9999V5.33329V8.6666H13.9999V5.33337V4.00002ZM32.6666 36.6666C32.6666 37.8 31.8 38.6666 30.6667 38.6666H9.33337C8.20003 38.6666 7.3334 37.8 7.3334 36.6666V7.99997C7.3334 6.86662 8.20003 6 9.33337 6H12.6667V8.66668C12.6667 9.40003 13.2667 10 14 10H26C26.7334 10 27.3334 9.40003 27.3334 8.66668V6H30.6667C31.8 6 32.6666 6.86662 32.6666 7.99997V36.6666Z" fill="black"/>
 <path d="M22 31.9999H11.3333C10.9333 31.9999 10.6667 32.2666 10.6667 32.6666C10.6667 33.0666 10.9333 33.3332 11.3333 33.3332H22C22.4 33.3332 22.6666 33.0666 22.6666 32.6666C22.6666 32.2666 22.4 31.9999 22 31.9999Z" fill="black"/>

@@ -19,20 +19,21 @@ async function getData(page, slug) {
 }
 
 export async function generateMetadata({ searchParams, params }) {
-  const page = searchParams.page ? parseInt(searchParams.page) : 1;
-  const productsData = await getData(page, params.slug);
+  const { page = "1" } = await searchParams; // Await searchParams
+  const currentPage = parseInt(page);
+  const {slug} = await params;
+  const productsData = await getData(currentPage, slug);
 
-  // Extract metadata dynamically
-  const categoryName = params.slug.replace("-", " ");
+  const categoryName = slug.replace("-", " ");
   const metadata = {
     metadataBase: new URL('https://pricedukan.com'),
-    title: `Explore ${categoryName} | Price Dukan`,
+    title: `Explore ${productsData.products[0].Product} | Price Dukan`,
     description: `Discover the best deals in ${categoryName} on Price Dukan. Compare prices for top products and save more!`,
-    keywords: `${categoryName}, Price comparison, Best deals, Save money, Online shopping`,
+    keywords: `${productsData.products[0].Product} , Price comparison, Best deals, Save money, Online shopping`,
     openGraph: {
-      title: `Explore ${categoryName} | Price Dukan`,
-      description: `Find top products in ${categoryName} on Price Dukan. Compare prices and shop smarter!`,
-      url: `https://pricedukan.com/category-detail/${params.slug}`,
+      title: `Explore ${productsData.products[0].Product}  | Price Dukan`,
+      description: `Find top products in ${productsData.products[0].Product}  on Price Dukan. Compare prices and shop smarter!`,
+      url: `https://pricedukan.com/category-detail/${slug}`,
       siteName: 'Price Dukan',
       images: productsData.products.slice(0, 3).map(product => ({
         url: product["Main Image"],
@@ -40,24 +41,26 @@ export async function generateMetadata({ searchParams, params }) {
         height: 630,
         alt: product.name,
       })),
-      locale: 'en_US',
       type: 'website',
     },
     twitter: {
       card: 'summary_large_image',
       site: '@PriceDukan',
-      title: `Explore ${categoryName} Deals | Price Dukan`,
-      description: `Shop smarter in ${categoryName} with Price Dukan's price comparison platform.`,
-      image: productsData.products[0]["Main Image"] || '/default-banner.jpg'
+      title: `Explore ${productsData.products[0].Product}  Deals | Price Dukan`,
+      description: `Shop smarter in ${productsData.products[0].Product}  with Price Dukan's price comparison platform.`,
+      image: productsData.products[0]["Main Image"] || '/default-banner.jpg',
     },
   };
 
   return metadata;
 }
 
-export async function generateJsonLd({ searchParams, params }) {
-  const page = searchParams.page ? parseInt(searchParams.page) : 1;
-  const productsData = await getData(page, params.slug);
+
+async function page({ searchParams, params }) {
+  const { page = "1" } = await searchParams; // Await searchParams
+  const currentPage = parseInt(page);
+  const {slug} = await params;
+  const productsData = await getData(currentPage, slug);
 
   const jsonLd = {
     "@context": "https://schema.org/",
@@ -76,7 +79,7 @@ export async function generateJsonLd({ searchParams, params }) {
         },
         offers: {
           "@type": "Offer",
-          url: `https://pricedukan.com/products/${product.slug}`,
+          url: `https://pricedukan.com/products/${product.Name}`,
           priceCurrency: "PKR",
           price: product.Price,
           itemCondition: "https://schema.org/NewCondition",
@@ -86,19 +89,18 @@ export async function generateJsonLd({ searchParams, params }) {
     })),
   };
 
-  return jsonLd;
-}
-
-async function page({ searchParams, params }) {
-  const page = searchParams.page ? parseInt(searchParams.page) : 1;
-  const productsData = await getData(page, params.slug);
-  const jsonLd = await generateJsonLd({ searchParams, params });
-
   return (
     <div>
       <Layout>
-        <CategoryDetail data={productsData} totalPages={productsData.pagination.totalPages} currentPage={page} />
-        <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
+        <CategoryDetail
+          data={productsData}
+          totalPages={productsData.pagination.totalPages}
+          currentPage={currentPage}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
       </Layout>
     </div>
   );
