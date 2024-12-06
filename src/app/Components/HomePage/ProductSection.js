@@ -33,7 +33,7 @@ export default function ProductSection({ item }) {
                         <button 
                             className="bg-[#059669] mt-5 text-white font-medium py-2.5 px-6 flex gap-2 rounded mb-6 hover:bg-green-600 transition"
                         >
-                            <Link href={`/category-detail/${item.category.Category}`}>
+                            <Link href={`/category-detail/${item.category.slug}`}>
                                 View All
                             </Link>
                         </button>

@@ -21,7 +21,7 @@ export default function Category({ productData }) {
             .map(item => (
               <Link
                 key={item.category?._id} // Add a key prop for React optimization
-                href={`/category-detail/${item.category.Category}`}
+                href={`/category-detail/${item.category.slug}`}
                 className="bg-white p-6 rounded-md hover:shadow-lg transition-all border border-dashed"
               >
                 <div className="overflow-hidden flex justify-center">
