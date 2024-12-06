@@ -24,7 +24,7 @@ export default function ProductDetail({product}) {
                         <div className="bg-white flex justify-center items-center">
                             <img
                                 src={product["Main Image"]} // Replace with the actual image path
-                                alt="Logitech F710 Wireless Gamepad"
+                                alt={product?.Name}
                                 className="w-full h-auto object-contain rounded-md px-12 py-4"
                             />
                         </div>

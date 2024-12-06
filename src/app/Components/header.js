@@ -43,7 +43,7 @@ export default function Header({ productData }) {
 
       {/* Main Header */}
       <div className="bg-[#fef7f4] border-b border-black/10">
-        <div className="py-4 layout-wrapper flex items-center justify-between">
+        <div className="py-4 layout-wrapper flex-col justify-center md:flex-row flex items-center md:justify-between">
           {/* Logo */}
           <Link href="/" className="text-2xl lg:text-3xl font-semibold text-[#202C33]">
             Price <span className="text-[#059669] font-bold">Dukan</span>
@@ -86,7 +86,7 @@ export default function Header({ productData }) {
           </div>
 
           {/* Search Bar */}
-          <form className="hidden lg:flex items-center" onSubmit={handleSearch}>
+          <form className="block md:flex items-center" onSubmit={handleSearch}>
             <div className="relative flex-1 w-[300px] md:w-[500px] hover:w-[600px] transition-all duration-300">
               <input
                 type="text"
