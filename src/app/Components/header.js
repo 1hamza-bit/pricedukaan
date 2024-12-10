@@ -1,15 +1,10 @@
 "use client";
 import { useRouter } from "next/navigation";
-import { Search, ChevronDown } from "lucide-react";
+import { Search } from "lucide-react";
 import Link from "next/link";
-import { useState, useRef, useEffect } from "react";
-import { usePathname } from "next/navigation";
 
 export default function Header({ productData }) {
-  const pathname = usePathname();
   const router = useRouter();
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const dropdownRef = useRef(null);
 
   const handleSearch = (e) => {
     e.preventDefault();
@@ -19,18 +14,6 @@ export default function Header({ productData }) {
     }
   };
 
-  // Close dropdown on outside click
-  useEffect(() => {
-    const handleOutsideClick = (event) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-        setIsDropdownOpen(false);
-      }
-    };
-    document.addEventListener("mousedown", handleOutsideClick);
-    return () => {
-      document.removeEventListener("mousedown", handleOutsideClick);
-    };
-  }, []);
 
   return (
     <header>
@@ -48,42 +31,6 @@ export default function Header({ productData }) {
           <Link href="/" className="text-2xl lg:text-3xl font-semibold text-[#202C33]">
             Price <span className="text-[#059669] font-bold">Dukan</span>
           </Link>
-
-          <div className="hidden lg:flex items-center space-x-6 relative">
-
-            <div ref={dropdownRef} className="relative">
-              {pathname === '/' && <div
-                className="flex items-center space-x-1 cursor-pointer"
-                onClick={() => setIsDropdownOpen((prev) => !prev)}
-              >
-                <span className="text-[#202c33]/90">Computer Products</span>
-                <ChevronDown
-                  size={16}
-                  className={`text-[#202c33]/90 transition-transform duration-200 ${
-                    isDropdownOpen ? "rotate-180" : ""
-                  }`}
-                />
-              </div>}
-
-              {/* Dropdown */}
-              {isDropdownOpen && (
-                <div className="absolute top-full left-0 mt-2 w-[800px] bg-white shadow-lg border border-black/10 p-4 rounded-md z-10">
-                  <div className="grid grid-cols-4 gap-4">
-                    {productData.map((item) => (
-                      <Link
-                        key={item.category._id}
-                        href={`#${item.category._id}`}
-                        className="text-[#202C33] hover:text-[#059669] transition-colors truncate"
-                        title={item.category.Category} // Show full name on hover
-                      >
-                        {item.category.Category}
-                      </Link>
-                    ))}
-                  </div>
-                </div>
-              )}
-            </div>
-          </div>
 
           {/* Search Bar */}
           <form className="block md:flex items-center" onSubmit={handleSearch}>

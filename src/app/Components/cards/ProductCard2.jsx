@@ -4,23 +4,22 @@ import React from 'react';
 function ProductCard2({ product }) {
   return (
     <Link
-      href={`/product/${product.Name}`}
-      key={product._id}
+      href={`/product/${product.name}`}
       className="card-border relative rounded-md px-4 py-6 hover:bg-neutral-50 transition-all"
     >
       <div className="flex gap-4">
         <div className="min-w-24 max-w-24 aspect-square overflow-hidden">
           <img
-            src={product["Image URL"]}
-            alt={product.Name}
+            src={product.mainImage}
+            alt={product.name}
             className="object-contain"
           />
         </div>
         <div className="flex flex-col">
           <h3 className="text-base text-[#202C33]">
-            {product.Name.length > 70
-              ? `${product.Name.slice(0, 70)} ...`
-              : product.Name}
+            {product.name.length > 70
+              ? `${product.name.slice(0, 70)} ...`
+              : product.name}
           </h3>
 
           <div className="flex items-center space-x-2 mt-3">
@@ -37,20 +36,20 @@ function ProductCard2({ product }) {
               />
             </svg>
             <p className="font-semibold text-base text-[#202C33]">
-              {product.Price}
+              {product.price}
             </p>
           </div>
         </div>
       </div>
 
-      {/* Brand Logo */}
+      {product.brand &&
       <div className="absolute bottom-4 right-4">
         <img
-          src={product.Brand.Image}
-          alt={product.Brand.Name}
+          src={product.brand}
+          alt={product.brand}
           className="w-10 h-10 object-contain"
         />
-      </div>
+      </div> }
     </Link>
   );
 }

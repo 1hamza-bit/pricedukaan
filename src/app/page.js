@@ -80,8 +80,8 @@ async function Page() {
       />
       <Layout productData={productData}>
         <ComparisonHub productData={productData} />
-        {productData.map((item) => (
-          <ProductSection key={item.category._id} item={item} />
+        {productData.map((item, index) => (
+          <ProductSection key={index} item={item} />
         ))}
       </Layout>
     </div>

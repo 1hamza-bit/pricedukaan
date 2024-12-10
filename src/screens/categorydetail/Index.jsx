@@ -3,21 +3,21 @@ import Pagination from "@/app/Components/Paginations";
 import ProductImageCarousel from "@/app/Components/ProductImageCarousel";
 import { Clock } from "lucide-react";
 
-export default function CategoryDetail({ data, totalPages, currentPage }) {
+export default function CategoryDetail({ data, totalPages, currentPage, v }) {
   return (
     <section>
       <div className="bg-[#FEF7F4]">
         <div className="py-8 layout-wrapper">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            {/* Client Component for Animated Images */}
-            <ProductImageCarousel products={data.products} />
+            {/* Client Component for Animated Images  */}
+            <ProductImageCarousel products={data.products} /> 
 
             <div>
               <h1 className="text-3xl font-semibold text-[#202c33]">
-                {data.products[0].Product}
+                {data.products[0].subcategory ? data.products[0].subcategory : data.products[0].category }
               </h1>
               <p className="mt-3 leading-relaxed text-[#202c33]/80 ">
-                Browse our selection of {data.products[0].Product}, offering
+                Browse our selection of {data.products[0].subcategory ? data.products[0].subcategory : data.products[0].category }, offering
                 quality and variety to suit every preference and need.
               </p>
               <div className="px-4 py-3 border border-[#4F4F4F80]/50 mt-6 rounded-sm flex items-center space-x-1.5">
@@ -40,7 +40,7 @@ export default function CategoryDetail({ data, totalPages, currentPage }) {
                 </p>
                 <p className="text-[#202c33] text-lg">{totalPages * 24}</p>
               </div>
-              <div className="px-4 py-3 border border-t-0 border-[#4F4F4F80]/50 rounded-sm flex items-center space-x-1.5">
+              {data.pagination.lastDate && <div className="px-4 py-3 border border-t-0 border-[#4F4F4F80]/50 rounded-sm flex items-center space-x-1.5">
                 <Clock size={20} />
                 <p className="text-lg font-semibold text-[#202c33]">Price Last Updated:</p>
                 <p className="text-[#202c33] text-lg ml-1">
@@ -52,7 +52,7 @@ export default function CategoryDetail({ data, totalPages, currentPage }) {
                     minute: "2-digit",
                   })}
                 </p>
-              </div>
+              </div>}
             </div>
           </div>
         </div>
@@ -60,10 +60,10 @@ export default function CategoryDetail({ data, totalPages, currentPage }) {
       <div className="layout-wrapper">
         {/* Products Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 py-8">
-          {data.products.map((product) => (
-            <ProductCard key={product._id} product={product} />
+          {data.products.map((product, index) => (
+            <ProductCard v={v} key={index} product={product} />
           ))}
-        </div>
+        </div> 
         <div>
           <Pagination
             route={"/category"}

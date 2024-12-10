@@ -5,7 +5,7 @@ import Link from "next/link";
 
 export default function ProductDetail({product}) {
 
-    const whatsappLink = `https://wa.me/+923302635347?text=${encodeURIComponent(product.Name)}`;
+    const whatsappLink = `https://wa.me/+923302635347?text=${encodeURIComponent(product.name)}`;
 
     return (
         <>
@@ -14,8 +14,8 @@ export default function ProductDetail({product}) {
                     {/* Breadcrumb */}
                     <nav className="text-sm text-[#202c33]/70 mb-8">
                         <a href="#" className="mx-2 hover:underline">Home</a> /
-                        <a href="#" className="mx-2 hover:underline">{product.Product}</a> /
-                        <span className="ml-2 text-[#202c33] bold">{product.Name}</span>
+                        <a href="#" className="mx-2 hover:underline">{product.category}</a> /
+                        <span className="ml-2 text-[#202c33] bold">{product.name}</span>
                     </nav>
 
                     {/* Product Section */}
@@ -23,18 +23,18 @@ export default function ProductDetail({product}) {
                         {/* Product Image */}
                         <div className="bg-white flex justify-center items-center">
                             <img
-                                src={product["Main Image"]} // Replace with the actual image path
-                                alt={product?.Name}
+                                src={product.image} // Replace with the actual image path
+                                alt={product?.name}
                                 className="w-full h-auto object-contain rounded-md px-12 py-4"
                             />
                         </div>
 
                         {/* Product Info */}
                         <div>
-                            <h1 className="text-2xl lg:text-3xl font-semibold text-[#202c33]">{product.Name}</h1>
-                            <h3 className="text-xl lg:text-2xl font-semibold text-[#202c33]/90 mt-4">{product.Price}</h3>
+                            <h1 className="text-2xl lg:text-3xl font-semibold text-[#202c33]">{product.name}</h1>
+                            <h3 className="text-xl lg:text-2xl font-semibold text-[#202c33]/90 mt-4">{product.price}</h3>
                             <p className="text-[#202c33] mt-3">
-                                {product.Description}
+                                {product.description}
                             </p>
                             <Link href={whatsappLink} target="_blank">
                                 <button className="bg-[#059669] mt-5 text-white font-medium py-2.5 px-6 flex gap-2 rounded mb-6 hover:bg-green-600 transition">
@@ -49,18 +49,36 @@ export default function ProductDetail({product}) {
                                         <path fill-rule="evenodd" clip-rule="evenodd" d="M12 21C13.1819 21 14.3522 20.7672 15.4442 20.3149C16.5361 19.8626 17.5282 19.1997 18.364 18.364C19.1997 17.5282 19.8626 16.5361 20.3149 15.4442C20.7672 14.3522 21 13.1819 21 12C21 10.8181 20.7672 9.64778 20.3149 8.55585C19.8626 7.46392 19.1997 6.47177 18.364 5.63604C17.5282 4.80031 16.5361 4.13738 15.4442 3.68508C14.3522 3.23279 13.1819 3 12 3C9.61305 3 7.32387 3.94821 5.63604 5.63604C3.94821 7.32387 3 9.61305 3 12C3 14.3869 3.94821 16.6761 5.63604 18.364C7.32387 20.0518 9.61305 21 12 21ZM11.768 15.64L16.768 9.64L15.232 8.36L10.932 13.519L8.707 11.293L7.293 12.707L10.293 15.707L11.067 16.481L11.768 15.64Z" fill="black"/>
                                     </svg>
                                     <span className="text-gray-700 font-semibold">Warranty:</span>
-                                    <span className="text-gray-700">{product.Warranty}</span>
+                                    <span className="text-gray-700">{product.warranty}</span>
                                 </div>
-                                <div className="flex items-center gap-2 py-4 px-3 border-t border-[#4F4F4F80]/50">
+                            </div>
+                            {product.brand && <div className="border border-t-0 border-[#4F4F4F80]/50 rounded bg-none">
+                                <div className="flex items-center gap-2 py-4 px-3">
                                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path fill-rule="evenodd" clip-rule="evenodd" d="M12 21C13.1819 21 14.3522 20.7672 15.4442 20.3149C16.5361 19.8626 17.5282 19.1997 18.364 18.364C19.1997 17.5282 19.8626 16.5361 20.3149 15.4442C20.7672 14.3522 21 13.1819 21 12C21 10.8181 20.7672 9.64778 20.3149 8.55585C19.8626 7.46392 19.1997 6.47177 18.364 5.63604C17.5282 4.80031 16.5361 4.13738 15.4442 3.68508C14.3522 3.23279 13.1819 3 12 3C9.61305 3 7.32387 3.94821 5.63604 5.63604C3.94821 7.32387 3 9.61305 3 12C3 14.3869 3.94821 16.6761 5.63604 18.364C7.32387 20.0518 9.61305 21 12 21ZM11.768 15.64L16.768 9.64L15.232 8.36L10.932 13.519L8.707 11.293L7.293 12.707L10.293 15.707L11.067 16.481L11.768 15.64Z" fill="black"/>
                                     </svg>
-                                    <span className="text-gray-700 font-semibold">Product Type:</span>
-                                    <span className="flex items-center gap-2">
-                                        <span className="text-gray-700">{product["Product"]}</span>
-                                    </span>
+                                    <span className="text-gray-700 font-semibold">Brand:</span>
+                                    <span className="text-gray-700">{product.brand}</span>
                                 </div>
-                            </div>
+                            </div>}
+                            {product.model && <div className="border border-t-0 border-[#4F4F4F80]/50 rounded bg-none">
+                                <div className="flex items-center gap-2 py-4 px-3">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M12 21C13.1819 21 14.3522 20.7672 15.4442 20.3149C16.5361 19.8626 17.5282 19.1997 18.364 18.364C19.1997 17.5282 19.8626 16.5361 20.3149 15.4442C20.7672 14.3522 21 13.1819 21 12C21 10.8181 20.7672 9.64778 20.3149 8.55585C19.8626 7.46392 19.1997 6.47177 18.364 5.63604C17.5282 4.80031 16.5361 4.13738 15.4442 3.68508C14.3522 3.23279 13.1819 3 12 3C9.61305 3 7.32387 3.94821 5.63604 5.63604C3.94821 7.32387 3 9.61305 3 12C3 14.3869 3.94821 16.6761 5.63604 18.364C7.32387 20.0518 9.61305 21 12 21ZM11.768 15.64L16.768 9.64L15.232 8.36L10.932 13.519L8.707 11.293L7.293 12.707L10.293 15.707L11.067 16.481L11.768 15.64Z" fill="black"/>
+                                    </svg>
+                                    <span className="text-gray-700 font-semibold">Model:</span>
+                                    <span className="text-gray-700">{product.model}</span>
+                                </div>
+                            </div>}
+                            {product.type && <div className="border border-t-0 border-[#4F4F4F80]/50 rounded bg-none">
+                                <div className="flex items-center gap-2 py-4 px-3">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M12 21C13.1819 21 14.3522 20.7672 15.4442 20.3149C16.5361 19.8626 17.5282 19.1997 18.364 18.364C19.1997 17.5282 19.8626 16.5361 20.3149 15.4442C20.7672 14.3522 21 13.1819 21 12C21 10.8181 20.7672 9.64778 20.3149 8.55585C19.8626 7.46392 19.1997 6.47177 18.364 5.63604C17.5282 4.80031 16.5361 4.13738 15.4442 3.68508C14.3522 3.23279 13.1819 3 12 3C9.61305 3 7.32387 3.94821 5.63604 5.63604C3.94821 7.32387 3 9.61305 3 12C3 14.3869 3.94821 16.6761 5.63604 18.364C7.32387 20.0518 9.61305 21 12 21ZM11.768 15.64L16.768 9.64L15.232 8.36L10.932 13.519L8.707 11.293L7.293 12.707L10.293 15.707L11.067 16.481L11.768 15.64Z" fill="black"/>
+                                    </svg>
+                                    <span className="text-gray-700 font-semibold">Type:</span>
+                                    <span className="text-gray-700">{product.type}</span>
+                                </div>
+                            </div>}
                         </div>
                     </div>
 
@@ -68,7 +86,7 @@ export default function ProductDetail({product}) {
                 </div>
             </section>
 
-            {/* Description Section */}
+
             <section className="bg-white border-t border-dotted border-black py-6">
                 <div className="layout-wrapper">
 
@@ -90,13 +108,13 @@ export default function ProductDetail({product}) {
                             Description
                         </h2>
                         <p className="text-[#202c33] mt-3 mb-5">
-                                {product.Description}
+                                {product.description}
                             </p>
                         <p className="text-[#202c33] font-semibold mb-4">
                             FEATURES:
                         </p>
                         <ul className="text-[#202c33] space-y-2 ">
-                            {product.Features.map(feature => <li key={feature}>{feature}</li>)}
+                            {product.features.map(feature => <li key={feature}>{feature}</li>)}
                         </ul>
                     </div>
                 </div>
@@ -127,7 +145,7 @@ export default function ProductDetail({product}) {
                                 No Specifications
                             </p>
                 </div>
-            </section>
+            </section> 
         </>
     );
 }

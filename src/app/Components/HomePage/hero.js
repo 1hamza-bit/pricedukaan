@@ -4,12 +4,12 @@ import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState, useEffect } from 'react';
 
-export default function ComparisonHub({ productData, additionalData }) {
+export default function ComparisonHub({ productData }) {
     // Hero images array
     const heroImages = [
-        { src: "i1.png", alt: 'Tools and Products' },
-        { src: "i2.png", alt: 'Wide Range of Products' },
-        { src: "i3.png", alt: 'Save More' },
+        { src: "i1.png", alt: 'hero_image_1' },
+        { src: "i2.png", alt: 'hero_image_2' },
+        { src: "i3.png", alt: 'hero_image_3' },
     ];
 
     const [currentImage, setCurrentImage] = useState(0);
@@ -80,13 +80,38 @@ export default function ComparisonHub({ productData, additionalData }) {
                     >
                         <div className="aspect-square overflow-hidden">
                             <img
-                                src={productData[0].products[0]["Main Image"]}
-                                alt={productData[0].products[0].Name}
+                                src={productData[0].products[2].image}
+                                alt="Computer Products"
                                 className="object-contain"
                             />
                         </div>
                         <p className="text-[#202c33] text-center">Computer Products</p>
                     </Link>
+                    {
+    productData
+        .filter(
+            (item) =>
+                item.products.length > 0 && 
+                item.category.slug.trim() === ""
+        )
+        .map((item, index) => (
+            <Link
+                key={index} // Use slug as key or fallback to index
+                href={`/categories/${encodeURIComponent(item.category.Name)}`}
+                className="bg-white p-6 rounded-md hover:shadow-lg transition-all border border-dashed"
+            >
+                <div className="aspect-square overflow-hidden">
+                    <img
+                        src={item.products[0].image} // Display the first product's image
+                        alt={item.category.Name}// Display the first product's name as alt
+                        className="object-contain"
+                    />
+                </div>
+                <p className="text-[#202c33] text-center">{item.category.Name}</p> {/* Display the category name */}
+            </Link>
+        ))
+}
+
                 </div>
             </section>
         </>

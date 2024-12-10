@@ -1,41 +1,63 @@
 import React from 'react';
 import Layout from '@/app/Components/Layouts';
-import Category from '@/screens/categories/Index';
 import { API_BASE_URL } from '@/config';
+import Category2 from '@/screens/categories/Categories2';
 
-// Metadata configuration
-export const metadata = {
-  metadataBase: new URL('https://pricedukan.com'),
-  title: "Price Dukan | Categories of Computer Products",
-  description: "Explore various categories of computer products with detailed price comparisons on Price Dukan. Shop smarter and save more!",
-  keywords: "Computer products, Price comparison, Best deals, Computer accessories, Price Dukan",
-  openGraph: {
-    title: "Price Dukan | Categories of Computer Products",
-    description: "Find the best deals on computer products and accessories. Compare prices and make smarter buying decisions with Price Dukan.",
-    url: "https://pricedukan.com/categories",
-    siteName: "Price Dukan",
-    images: [
-      {
-        url: "/images/computer-category-banner.jpg",
+export async function generateMetadata({ params }) {
+  const { slug } = params;
+  const res = await fetch(`${API_BASE_URL}/api/categories/categories-with-products-v2?main_category=${slug}`, { cache: 'no-store' });
+  if (!res.ok) {
+    throw new Error('Failed to fetch metadata for the category');
+  }
+
+  const data = await res.json();
+
+  // Construct metadata dynamically
+  const mainCategory = data.main_category || 'Category';
+  const title = `Price Dukan | ${mainCategory}`;
+  const description = `Explore ${mainCategory} categories and discover the best deals with detailed price comparisons on Price Dukan. Shop smarter and save more!`;
+
+  const keywords = data.categories
+    .map((category) => category.category_name)
+    .join(', ');
+
+  const images = data.categories.flatMap((category) =>
+    category.products.flatMap((product) =>
+      product.products.map((item) => ({
+        url: item["Product Image"],
         width: 1200,
         height: 630,
-        alt: "Computer Category Banner",
-      },
-    ],
-    type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
-    site: "@PriceDukan",
-    title: "Price Dukan | Best Computer Deals",
-    description: "Compare prices of computer products and accessories. Save more with Price Dukan.",
-    image: "/images/computer-category-banner.jpg",
-  },
-};
+        alt: item['Product Name'],
+      }))
+    )
+  );
+
+  return {
+    metadataBase: new URL('https://pricedukan.com'),
+    title,
+    description,
+    keywords,
+    openGraph: {
+      title,
+      description,
+      url: `https://pricedukan.com/categories/${slug}`,
+      siteName: 'Price Dukan',
+      images: images.slice(0, 1), // Use the first product image as OG image
+      type: 'website',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      site: '@PriceDukan',
+      title,
+      description,
+      image: images[0]?.url || '/images/default-banner.jpg',
+    },
+  };
+}
 
 // Fetching category data
-async function getData() {
-  const productRes = await fetch(`${API_BASE_URL}/api/categories/categories-with-product`, { cache: 'no-store' });
+async function getData(slug) {
+  const productRes = await fetch(`${API_BASE_URL}/api/categories/categories-with-products-v2?main_category=${slug}`, { cache: 'no-store' });
   if (!productRes.ok) {
     throw new Error('Failed to fetch category data');
   }
@@ -44,14 +66,14 @@ async function getData() {
 }
 
 // Page component
-async function Page() {
-  const { productData } = await getData();
+async function Page({ params }) {
+  const { slug } = params;
+  const { productData } = await getData(slug);
 
   return (
     <div>
       <Layout>
-        {/* Category Component */}
-        <Category productData={productData} />
+        <Category2 productData={productData} />
       </Layout>
     </div>
   );

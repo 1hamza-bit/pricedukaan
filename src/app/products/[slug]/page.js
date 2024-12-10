@@ -3,8 +3,8 @@ import Layout from '@/app/Components/Layouts';
 import { API_BASE_URL } from '@/config';
 import React from 'react';
 
-async function getData(slug) {
-  const productRes = await fetch(`${API_BASE_URL}/api/products/${slug}`, { cache: 'no-store' });
+async function getData(slug,v) {
+  const productRes = await fetch(`${API_BASE_URL}/api/products/${slug}?v=${v}`, { cache: 'no-store' });
   if (!productRes.ok) {
     throw new Error('Failed to fetch data');
   }
@@ -12,54 +12,51 @@ async function getData(slug) {
   return { productData };
 }
 
-export async function generateMetadata({ params }) {
+export async function generateMetadata({ params , searchParams }) {
+  const {v} = await searchParams;
   const {slug} = await params;
-  const { productData } = await getData(slug);
+  const { productData } = await getData(slug,v);
 
   const metadata = {
     metadataBase: new URL('https://pricedukan.com'),
-    title: `${productData.Name} | Price Dukan`,
-    description: `Buy ${productData.Name} for just PKR ${productData.Price}. ${productData.Description}`,
-    keywords: `${productData.Name}, ${productData.Product}, Online shopping, Best deals`,
+    title: `${productData.name} | Price Dukan`,
+    description: `Buy ${productData.name} for just PKR ${productData.price}. ${productData.description}`,
+    keywords: `${productData.name}, ${productData.category}, Online shopping, Best deals`,
     openGraph: {
-      title: `${productData.Name} | Price Dukan`,
-      description: `Get the best price for ${productData.Name} on Price Dukan. Shop smarter and save more!`,
-      url: `https://pricedukan.com/products/${params.Name}`,
+      title: `${productData.name} | Price Dukan`,
+      description: `Get the best price for ${productData.name} on Price Dukan. Shop smarter and save more!`,
+      url: `https://pricedukan.com/products/${slug}`,
       siteName: 'Price Dukan',
-      images: productData.Images.map((image) => ({
-        url: image,
-        width: 1200,
-        height: 630,
-        alt: `${productData.Name}`,
-      })),
+      image: productData.image,
       locale: 'en_US',
       type: 'website',
     },
     twitter: {
       card: 'summary_large_image',
       site: '@PriceDukan',
-      title: `${productData.Name} | Price Dukan`,
-      description: `Buy ${productData.Name} for just ${productData.Price}.`,
-      image: productData.Images[0],
+      title: `${productData.name} | Price Dukan`,
+      description: `Buy ${productData.name} for just ${productData.price}.`,
+      image: productData.image,
     },
   };
 
   return metadata;
 }
 
-async function page({ params }) {
+async function page({ params, searchParams }) {
+  const {v} = await searchParams;
   const {slug} = await params;
-  const { productData } = await getData(slug);
+  const { productData } = await getData(slug,v);
 
   const jsonLd = {
     "@context": "https://schema.org/",
     "@type": "Product",
-    name: productData.Name,
-    image: productData.Images,
-    description: productData.Description,
+    name: productData.name,
+    image: productData.image,
+    description: productData.description,
     brand: {
       "@type": "Brand",
-      name: productData.Product,
+      name: productData.brand,
     },
     review: {
       "@type": "Review",
@@ -80,11 +77,11 @@ async function page({ params }) {
     },
     offers: {
       "@type": "Offer",
-      url: `https://pricedukan.com/products/${productData.Name}`,
+      url: `https://pricedukan.com/products/${slug}`,
       priceCurrency: "PKR",
-      price: productData.Price,
+      price: productData.price,
       priceValidUntil: "2025-11-20",
-      itemCondition: "https://schema.org/UsedCondition",
+      itemCondition: "https://schema.org/NewCondition",
       availability: "https://schema.org/InStock",
     },
   };

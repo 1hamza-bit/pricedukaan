@@ -21,13 +21,13 @@ export default function Category({ productData }) {
             .map(item => (
               <Link
                 key={item.category?._id} // Add a key prop for React optimization
-                href={`/category-detail/${item.category.slug}`}
+                href={`/category-detail/${encodeURIComponent(item.category.Category)}?v=1`}
                 className="bg-white p-6 rounded-md hover:shadow-lg transition-all border border-dashed"
               >
                 <div className="overflow-hidden flex justify-center">
                   <img
                     src={item.products[0]["Main Image"]}
-                    alt={item.products[0].Name}
+                    alt={item.category.Category}
                     className="object-contain min-w-24 max-w-24 aspect-square"
                   />
                 </div>
