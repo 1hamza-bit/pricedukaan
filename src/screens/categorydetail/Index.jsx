@@ -38,7 +38,7 @@ export default function CategoryDetail({ data, totalPages, currentPage, v }) {
                 <p className="text-lg font-semibold text-[#202c33]">
                   Total Products:
                 </p>
-                <p className="text-[#202c33] text-lg">{totalPages * 24}</p>
+                <p className="text-[#202c33] text-lg">{data.pagination.totalItems}</p>
               </div>
               {data.pagination.lastDate && <div className="px-4 py-3 border border-t-0 border-[#4F4F4F80]/50 rounded-sm flex items-center space-x-1.5">
                 <Clock size={20} />
