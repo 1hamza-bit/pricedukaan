@@ -34,7 +34,7 @@ export default function ProductDetail({product}) {
                             <h1 className="text-2xl lg:text-3xl font-semibold text-[#202c33]">{product.name}</h1>
                             <h3 className="text-xl lg:text-2xl font-semibold text-[#202c33]/90 mt-4">{product.price}</h3>
                             <p className="text-[#202c33] mt-3">
-                                {product.description}
+                                {product.description || `The ${product.name} is a high-quality product designed to meet your needs. Learn more about its features and benefits!`}
                             </p>
                             <Link href={whatsappLink} target="_blank">
                                 <button className="bg-[#059669] mt-5 text-white font-medium py-2.5 px-6 flex gap-2 rounded mb-6 hover:bg-green-600 transition">
@@ -42,7 +42,7 @@ export default function ProductDetail({product}) {
                                 </button>
                             </Link>
 
-                            {/* Product Details Table */}
+                            { product.warranty &&
                             <div className="border border-[#4F4F4F80]/50 rounded bg-none">
                                 <div className="flex items-center gap-2 py-4 px-3">
                                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -51,7 +51,7 @@ export default function ProductDetail({product}) {
                                     <span className="text-gray-700 font-semibold">Warranty:</span>
                                     <span className="text-gray-700">{product.warranty}</span>
                                 </div>
-                            </div>
+                            </div> }
                             {product.brand && <div className="border border-t-0 border-[#4F4F4F80]/50 rounded bg-none">
                                 <div className="flex items-center gap-2 py-4 px-3">
                                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -108,11 +108,13 @@ export default function ProductDetail({product}) {
                             Description
                         </h2>
                         <p className="text-[#202c33] mt-3 mb-5">
-                                {product.description}
+                                {product.description || `The ${product.name} is a high-quality product designed to meet your needs. Learn more about its features and benefits!`}
                             </p>
-                        <p className="text-[#202c33] font-semibold mb-4">
+                        {product.features && 
+                            <p className="text-[#202c33] font-semibold mb-4">
                             FEATURES:
-                        </p>
+                            </p>
+                        }
                         <ul className="text-[#202c33] space-y-2 ">
                             {product.features.map(feature => <li key={feature}>{feature}</li>)}
                         </ul>
