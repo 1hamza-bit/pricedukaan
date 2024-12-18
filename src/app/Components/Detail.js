@@ -13,8 +13,9 @@ export default function ProductDetail({product}) {
                 <div className="container mx-auto px-4">
                     {/* Breadcrumb */}
                     <nav className="text-sm text-[#202c33]/70 mb-8">
-                        <a href="#" className="mx-2 hover:underline">Home</a> /
-                        <a href="#" className="mx-2 hover:underline">{product.category}</a> /
+                        <Link href="/" className="mx-2 hover:underline">Home</Link> /
+                        {product.subcategory ?                         <Link href={`/category-detail/${encodeURIComponent(product.subcategory)}?v=2`} className="mx-2 hover:underline">{product.subcategory}</Link> : <Link href={`/category-detail/${encodeURIComponent(product.category)}?v=1`} className="mx-2 hover:underline">{product.category}</Link>}
+                        /
                         <span className="ml-2 text-[#202c33] bold">{product.name}</span>
                     </nav>
 
@@ -125,7 +126,7 @@ export default function ProductDetail({product}) {
                             </p>
                         }
                         <ul className="text-[#202c33] space-y-2 ">
-                            {product.features.map(feature => <li key={feature}>{feature}</li>)}
+                            {product.features.map((feature, index) => <li key={index}>{feature}</li>)}
                         </ul>
                     </div>
                 </div>

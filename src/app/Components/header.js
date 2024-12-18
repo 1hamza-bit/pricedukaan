@@ -34,7 +34,7 @@ export default function Header({ productData }) {
 
           {/* Search Bar */}
           <form className="block md:flex items-center" onSubmit={handleSearch}>
-            <div className="relative flex-1 w-[300px] md:w-[500px] hover:w-[600px] transition-all duration-300">
+            <div className="relative flex-1 w-[300px] lg:w-[500px]  lg:hover:w-[600px] transition-all duration-300">
               <input
                 type="text"
                 name="search"
